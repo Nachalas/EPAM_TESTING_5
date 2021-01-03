@@ -12,13 +12,22 @@ import util.CustomConditions;
 public class MainPage extends AbstractPage
 {
 
-	private static final String BASE_URL = "https://by.wildberries.ru/";
+	private static final String BASE_URL = "https://www.mvideo.ru/";
 
 	private static final By byNavBarMenuBookButton = By.xpath("//li[@data-menu-id='519']/a");
 
 	public MainPage()
 	{
 		super();
+	}
+
+	public PostNavBarPage clickOnNavBarOption(String option) {
+		driverWait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//div[@class='header-collection__list-wrapper']" +
+						"/div[@class='header-collection__list']" +
+						"/a[@class='header-collection__item' and contains(text(), '"
+						+ option + "')]"))).click();
+		return new PostNavBarPage();
 	}
 
 	@Override
@@ -28,5 +37,7 @@ public class MainPage extends AbstractPage
 		logger.info("Opened page " + BASE_URL);
 		return this;
 	}
+
+
 
 }
