@@ -47,4 +47,8 @@ public class Utils {
         return listOfStrings;
     }
 
+    public static int convertPriceStringToInt(String priceString) {
+        return Integer
+                .parseInt(priceString.replaceAll("[^0-9]", ""));
+    }
 }

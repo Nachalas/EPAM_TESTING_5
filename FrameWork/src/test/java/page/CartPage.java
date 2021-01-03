@@ -1,0 +1,41 @@
+package page;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.FindBy;
+import util.Utils;
+
+import java.util.List;
+
+public class CartPage extends AbstractPage {
+    private static final String BASE_URL = "https://www.mvideo.ru/cart";
+
+    private static final By byItemName = By.xpath("//a[@class='c-link c-cart-item__title']");
+    private static final By byItemPrice = By.xpath("//span[@class='c-cart-item__price']");
+
+    @FindBy (xpath = "//div[@class='c-cart-item__wrapper ']")
+    List<WebElement> addedItems;
+
+    public CartPage()
+    {
+        super();
+    }
+
+    @Override
+    public CartPage openPage()
+    {
+        driver.navigate().to(BASE_URL);
+        logger.info("Opened page " + BASE_URL);
+        return this;
+    }
+
+    public String getItemNameByIndex(int index) {
+        return addedItems.get(index).findElement(byItemName).getText();
+    }
+
+    public int getItemPriceByIndex(int index) {
+        return Utils.convertPriceStringToInt(addedItems.get(index).findElement(byItemPrice).getText());
+    }
+
+}

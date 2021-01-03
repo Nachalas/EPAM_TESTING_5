@@ -14,7 +14,11 @@ public class MainPage extends AbstractPage
 
 	private static final String BASE_URL = "https://www.mvideo.ru/";
 
-	private static final By byNavBarMenuBookButton = By.xpath("//li[@data-menu-id='519']/a");
+	@FindBy (xpath = "//input[@id='header-search-input']")
+	private WebElement searchInput;
+
+	@FindBy (xpath = "//button[@class='c-text-field__search-button']")
+	private WebElement searchButton;
 
 	public MainPage()
 	{
@@ -38,6 +42,14 @@ public class MainPage extends AbstractPage
 		return this;
 	}
 
+	public MainPage enterSearchQuery(String query) {
+		searchInput.sendKeys(query);
+		return this;
+	}
 
+	public SearchResultsPage searchForQuery() {
+		searchButton.click();
+		return new SearchResultsPage();
+	}
 
 }
