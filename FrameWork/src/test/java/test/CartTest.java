@@ -23,4 +23,20 @@ public class CartTest extends CommonConditions {
         assertThat(actualName).isEqualTo(expectedName);
         assertThat(actualPrice).isEqualTo(expectedPrice);
     }
+
+    @Test
+    public void testMoneyChange(){
+        ProductPage productPage = new ProductPage(ProductPageDataReader.getProductPageUrl())
+                .openPage();
+        int expectedDoublePrice = productPage
+                .getProductPrice() * 2;
+        productPage.addToBasket();
+        CartPage cartPage = new CartPage()
+                .openPage();
+        int cartPrice = cartPage
+                .clickOnPlusButton()
+                .getCartPrice();
+
+        assertThat(cartPrice).isEqualTo(expectedDoublePrice);
+    }
 }
