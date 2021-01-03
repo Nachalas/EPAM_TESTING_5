@@ -11,7 +11,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class NavBarTest extends CommonConditions {
 
     @Test
-    public void navBarTest(){
+    public void testNavBar(){
         List<String> appleProductsNames = Utils
                 .convertStringToListOfStrings(NavBarPageDataReader
                         .getTestDataNavBarAppleProducts());

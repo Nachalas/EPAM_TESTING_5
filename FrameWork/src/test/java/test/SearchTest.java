@@ -20,4 +20,16 @@ public class SearchTest extends CommonConditions {
                 .getItemsNames();
         assertThat(searchResultingNames).allMatch(item -> item.toLowerCase().contains(query.toLowerCase()));
     }
+
+    @Test
+    public void testSearchLine(){
+        String queryPart = SearchDataReader.getPartOfSearchQuery();
+
+        List<String> suggestedItemsList = new MainPage()
+                .openPage()
+                .enterSearchQuery(queryPart)
+                .getSuggestedItemsList();
+
+        assertThat(suggestedItemsList).allMatch(item -> item.toLowerCase().contains(queryPart.toLowerCase()));
+    }
 }
