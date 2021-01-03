@@ -29,6 +29,9 @@ public class MainPage extends AbstractPage
 	private static final By bySuggestedItemsList = By
 			.xpath("//span[@class='suggested-search-text ']");
 
+	@FindBy (xpath = "//div[@class='header-main__catalog-btn']")
+	private WebElement catalogButton;
+
 	public MainPage()
 	{
 		super();
@@ -64,6 +67,29 @@ public class MainPage extends AbstractPage
 	public SearchResultsPage searchForQuery() {
 		searchButton.click();
 		return new SearchResultsPage();
+	}
+
+	public MainPage openCatalog() {
+		catalogButton.click();
+		return this;
+	}
+
+	public MainPage openCatalogCategory(String category) {
+		WebElement categoryButton = driver.findElement(By.xpath(
+				"//div[@class='header-catalog__category-name' and contains(text(), '"
+						+ category
+						+ "')]"));
+		actions.moveToElement(categoryButton).perform();
+		return this;
+	}
+
+	public CategoryPage openCatalogSubcategory(String subcategory) {
+		WebElement subcategoryButton = driver.findElement(By.xpath("" +
+				"//a[@class='c-link c-link_text header-catalog__subcategory']//span[contains(text(),'" +
+				subcategory
+				+ "')]"));
+		subcategoryButton.click();
+		return new CategoryPage();
 	}
 
 }

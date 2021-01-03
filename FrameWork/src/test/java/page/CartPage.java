@@ -15,7 +15,7 @@ public class CartPage extends AbstractPage {
     private static final By byItemPrice = By.xpath("//span[@class='c-cart-item__price']");
 
     @FindBy (xpath = "//div[@class='c-cart-item__wrapper ']")
-    List<WebElement> addedItems;
+    private List<WebElement> addedItems;
 
     public CartPage()
     {

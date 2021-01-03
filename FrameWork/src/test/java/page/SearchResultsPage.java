@@ -12,7 +12,7 @@ public class SearchResultsPage extends AbstractPage{
     private static final By byItemName = By.xpath("//a[@class='sel-product-tile-title']");
 
     @FindBy (xpath = "//div[@class='fl-product-tile c-product-tile ']")
-    List<WebElement> itemsList;
+    private List<WebElement> itemsList;
 
     public SearchResultsPage() {
         super();

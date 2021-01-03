@@ -12,7 +12,7 @@ public class FavoritesPage extends AbstractPage {
     private static final By byItemName = By.xpath("//h3[@class='wishlist-product-title']");
 
     @FindBy (xpath = "//div[@class='wishlist-item-holder']")
-    List<WebElement> addedItems;
+    private List<WebElement> addedItems;
 
     public FavoritesPage() {
         super();
