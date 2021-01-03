@@ -12,7 +12,7 @@ public class ComparisonPage extends AbstractPage {
     private static final By byItemName = By.xpath("//a[@class='sel-product-tile-title']");
 
     @FindBy (xpath = "//div[@class='c-compare-cell c-compare-cell_border c-compare-cell__pinable-product-tile']")
-    List<WebElement> addedItems;
+    private List<WebElement> addedItems;
 
     public ComparisonPage()
     {
