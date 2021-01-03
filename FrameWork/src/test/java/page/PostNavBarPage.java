@@ -11,13 +11,11 @@ import java.util.List;
 
 public class PostNavBarPage extends AbstractPage {
 
-    @FindBy(xpath = "//a[@class='c-preview-article__title-link c-link c-link_gray20']")
-    private List<WebElement> navBarCategoryProductsNames;
-
     private static final By byNavBarCategoryProductsNames = By
             .xpath("//a[@class='c-preview-article__title-link c-link c-link_gray20']");
 
-
+    @FindBy(xpath = "//a[@class='c-preview-article__title-link c-link c-link_gray20']")
+    private List<WebElement> navBarCategoryProductsNames;
 
     public List<String> getListOfNavBarCategoryProductsNames(){
         driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byNavBarCategoryProductsNames));
