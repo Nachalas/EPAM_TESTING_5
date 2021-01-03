@@ -1,21 +1,19 @@
 package page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.testng.reporters.jq.Main;
-import util.CustomConditions;
 import util.Utils;
 
 import java.util.List;
 
-public class MainPage extends AbstractPage
-{
+public class MainPage extends AbstractPage {
 
 	private static final String BASE_URL = "https://www.mvideo.ru/";
+
+	private static final By bySuggestedItemsList = By
+			.xpath("//span[@class='suggested-search-text ']");
 
 	@FindBy (xpath = "//input[@id='header-search-input']")
 	private WebElement searchInput;
@@ -26,11 +24,14 @@ public class MainPage extends AbstractPage
 	@FindBy(xpath = "//span[@class='suggested-search-text ']")
 	private List<WebElement> suggestedItemsList;
 
-	private static final By bySuggestedItemsList = By
-			.xpath("//span[@class='suggested-search-text ']");
-
 	@FindBy (xpath = "//div[@class='header-main__catalog-btn']")
 	private WebElement catalogButton;
+
+	@FindBy (xpath = "//i[@class='i-icon i-icon-fl-location']")
+	private WebElement changePlaceOfDeliveryButton;
+
+	@FindBy (xpath = "//span[@class='c-btn_close font-icon icon-delete']")
+	private WebElement closeChangePlaceOfDeliveryWindow;
 
 	public MainPage()
 	{
@@ -71,6 +72,15 @@ public class MainPage extends AbstractPage
 
 	public MainPage openCatalog() {
 		catalogButton.click();
+		return this;
+	}
+
+	public MainPage changePlaceOfDelivery(String newCity) {
+		changePlaceOfDeliveryButton.click();
+		driverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(
+				"//label[contains(text(), '" +
+						newCity +
+						"')]"))).click();
 		return this;
 	}
 

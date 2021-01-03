@@ -7,7 +7,7 @@ import org.openqa.selenium.support.FindBy;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SearchResultsPage extends AbstractPage{
+public class SearchResultsPage extends AbstractPage {
 
     private static final By byItemName = By.xpath("//a[@class='sel-product-tile-title']");
 

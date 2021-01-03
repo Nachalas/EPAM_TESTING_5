@@ -8,6 +8,7 @@ import page.ProductPage;
 import service.ProductPageDataReader;
 
 public class CartTest extends CommonConditions {
+
     @Test
     public void testAddToCart() {
         ProductPage productPage = new ProductPage(ProductPageDataReader.getProductPageUrl())

@@ -17,6 +17,9 @@ public class CartPage extends AbstractPage {
     @FindBy (xpath = "//div[@class='c-cart-item__wrapper ']")
     private List<WebElement> addedItems;
 
+    @FindBy (xpath = "//a[@class='c-link c-header-checkout__choose-city c-link_pseudo']")
+    private WebElement currentPlaceOfDelivery;
+
     public CartPage()
     {
         super();
@@ -36,6 +39,10 @@ public class CartPage extends AbstractPage {
 
     public int getItemPriceByIndex(int index) {
         return Utils.convertPriceStringToInt(addedItems.get(index).findElement(byItemPrice).getText());
+    }
+
+    public String getCurrentPlaceOfDelivery() {
+        return currentPlaceOfDelivery.getText();
     }
 
 }
