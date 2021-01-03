@@ -1,18 +1,12 @@
 package page;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.FindBy;
-
-import java.util.List;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 
 public class FavoritesPage extends AbstractPage {
     private static final String BASE_URL = "https://www.mvideo.ru/wish-list";
 
     private static final By byItemName = By.xpath("//h3[@class='wishlist-product-title']");
-
-    @FindBy (xpath = "//div[@class='wishlist-item-holder']")
-    private List<WebElement> addedItems;
 
     public FavoritesPage() {
         super();
@@ -26,6 +20,6 @@ public class FavoritesPage extends AbstractPage {
     }
 
     public String getItemNameByIndex(int index) {
-        return addedItems.get(index).findElement(byItemName).getText();
+        return driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(byItemName)).get(index).getText();
     }
 }

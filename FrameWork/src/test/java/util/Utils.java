@@ -18,16 +18,6 @@ public class Utils {
         return listOfInnerTextsFromWebElements;
     }
 
-    public static List<Integer> convertListOfPricesToListOfInts(List<String> pricesList) {
-        List<Integer> integerPriceList = new ArrayList<>();
-        for (String price :
-                pricesList) {
-            integerPriceList.add(Integer
-                    .parseInt(price.replaceAll("[^0-9]", "")));
-        }
-        return integerPriceList;
-    }
-
     public static List<String> convertStringToListOfStrings(String line){
         List<String> listOfStrings = new ArrayList<>();
         StringBuilder word = new StringBuilder();
