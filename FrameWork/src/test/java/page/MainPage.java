@@ -25,6 +25,15 @@ public class MainPage extends AbstractPage
 		super();
 	}
 
+	public PostNavBarPage clickOnNavBarOption(String option) {
+		driverWait.until(ExpectedConditions.presenceOfElementLocated(By
+				.xpath("//div[@class='header-collection__list-wrapper']" +
+						"/div[@class='header-collection__list']" +
+						"/a[@class='header-collection__item' and contains(text(), '"
+						+ option + "')]"))).click();
+		return new PostNavBarPage();
+	}
+
 	@Override
 	public MainPage openPage()
 	{
