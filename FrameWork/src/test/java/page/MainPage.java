@@ -8,6 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.reporters.jq.Main;
 import util.CustomConditions;
+import util.Utils;
+
+import java.util.List;
 
 public class MainPage extends AbstractPage
 {
@@ -19,6 +22,12 @@ public class MainPage extends AbstractPage
 
 	@FindBy (xpath = "//button[@class='c-text-field__search-button']")
 	private WebElement searchButton;
+
+	@FindBy(xpath = "//span[@class='suggested-search-text ']")
+	private List<WebElement> suggestedItemsList;
+
+	private static final By bySuggestedItemsList = By
+			.xpath("//span[@class='suggested-search-text ']");
 
 	@FindBy (xpath = "//div[@class='header-main__catalog-btn']")
 	private WebElement catalogButton;
@@ -48,6 +57,11 @@ public class MainPage extends AbstractPage
 	public MainPage enterSearchQuery(String query) {
 		searchInput.sendKeys(query);
 		return this;
+	}
+
+	public List<String> getSuggestedItemsList(){
+		driverWait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(bySuggestedItemsList));
+		return Utils.parseListOfWebElementsToListOfStrings(suggestedItemsList);
 	}
 
 	public SearchResultsPage searchForQuery() {
